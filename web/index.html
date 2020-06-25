@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html,
+        body,
+
+        #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    <title>Witeithie</title>
+</head>
+
+<body>
+    <button id="zoomGetButton">getZoom</button>
+    <style>
+
+    </style>
+
+
+    <!-- <div><button id="infoButton">Map Feature</button></div> -->
+
+    <!-- <pre id="features">
+        <strong>Feature Title</strong>
+        <small>Feature Details</small>
+    </pre> -->
+
+    <div id='map'></div>
+
+
+
+    <!-- <div id="left-panel">[&gt;]()</div> -->
+
+    <script src="./Data/Appurtenances.js"></script>
+    <script src="./Data/LATERALS.js"></script>
+    <script src="./Data/MAINS.js"></script>
+    <script src="./Data/Air_Valves.js"></script>
+    <script src="./Data/Gate_Valves.js"></script>
+    <script src="./Data/Reducer.js"></script>
+    <script src="./Data/Sluice_Valve.js"></script>
+
+    <!-- <script src="style.js"></script> -->
+
+
+
+
+
+    <script>
+
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlYmlvIiwiYSI6ImNpc3p2Z3BxZzAwNXMyb28zaXVjajFmeXIifQ.24cleWGOQLJPLfGZqYOKMQ';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            // style: 'mapbox://styles/mapbox/streets-v11',
+            style: 'mapbox://styles/mapbox/satellite-v9',
+            // center: [36.069603256356004, -0.5111834963925048],
+            // zoom: 8.2,
+
+        });
+        map.addControl(new mapboxgl.NavigationControl());
+        map.on('load', function () {
+
+            // map.addSource('appurtenances', {
+            //     'type': 'geojson',
+            //     'data': appurtenances
+            // })
+            // map.addLayer(//points layer
+            //     {
+            //         "id": "appurtenances",
+            //         "type": "circle",
+            //         "source": "appurtenances",
+            //         // 'minzoom': zoomThreshold,
+            //         "layout": {
+            //             // 'visibility': 'visible',
+            //             'icon-image': 'gradient'
+
+            //         },
+
+            //         "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(255, 255, 3, 1)', 'circle-opacity': 1.0 }
+            //     })
+            map.addSource('appurtenances', {
+                'type': 'geojson',
+                'data': airValve
+            })
+            map.addLayer(//points layer
+                {
+                    "id": "airValve",
+                    "type": "circle",
+                    "source": "airValve",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        // 'visibility': 'visible',
+                        'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(255, 255, 3, 1)', 'circle-opacity': 1.0 }
+                })
+
+
+            map.addSource('appurtenances', {
+                'type': 'geojson',
+                'data': gateValve
+            })
+
+            map.addLayer(//points layer
+                {
+                    "id": "gateValve",
+                    "type": "circle",
+                    "source": "gateValve",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        // 'visibility': 'visible',
+                        'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(255, 255, 3, 1)', 'circle-opacity': 1.0 }
+                })
+
+
+            map.addSource('appurtenances', {
+                'type': 'geojson',
+                'data': reducer
+            })
+            map.addLayer(//points layer
+                {
+                    "id": "reducer",
+                    "type": "circle",
+                    "source": "reducer",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        // 'visibility': 'visible',
+                        'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(255, 255, 3, 1)', 'circle-opacity': 1.0 }
+                })
+
+
+            map.addSource('appurtenances', {
+                'type': 'geojson',
+                'data': sluice
+            })
+            map.addLayer(//points layer
+                {
+                    "id": "sluice",
+                    "type": "circle",
+                    "source": "sluice",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        // 'visibility': 'visible',
+                        'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(255, 255, 3, 1)', 'circle-opacity': 1.0 }
+                })
+
+
+            map.addSource('Laterals', {
+                'type': 'geojson',
+                'data': Laterals
+            })
+            map.addLayer(
+                {
+                    "id": "laterals_layer",
+                    "type": "line",
+                    "source": "Laterals",
+                    "layout": {},
+                    "paint": { 'line-width': 1.904724409456, 'line-opacity': 1, 'line-color': '#c70000' }
+                })
+
+            map.addSource('mains', {
+                'type': 'geojson',
+                'data': Mains
+            })
+            map.addLayer(
+                {
+                    "id": "mains",
+                    "type": "line",
+                    "source": "mains",
+
+                    "layout": {},
+                    "paint": { 'line-width': 2.904724409456, 'line-opacity': 1, 'line-color': '#1E4FDC' }
+                }
+            )
+
+            map.flyTo({
+                center: [37.064848, -1.0979],
+                zoom: 14,
+                bearing: -0,
+                pitch: 41.9,
+                speed: 0.5,
+                essential: true // this animation is considered essential with respect to prefers-reduced-motion
+            });
+
+
+        })
+
+
+
+
+
+        document.getElementById('zoomGetButton').addEventListener('click', function () {
+            var zoom = map.getZoom()
+            console.log(zoom)
+
+            var center = map.getCenter()
+            console.log(center)
+
+            var bearing = map.getBearing()
+            console.log(bearing)
+
+            var pitch = map.getPitch()
+            console.log(pitch)
+        });
+
+
+    </script>
+
+</body>
+
+</html>
