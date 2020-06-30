@@ -21,12 +21,54 @@
             padding: 0;
             margin: 0;
         }
+
+        #features {
+            top: 0;
+            height: 100px;
+            margin-top: 20px;
+            width: 250px;
+        }
+
+        #legend {
+            padding: 10px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            line-height: 18px;
+            height: 150px;
+            margin-bottom: 40px;
+            width: 100px;
+        }
+
+        .legend-key {
+            display: inline-block;
+            border-radius: 20%;
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+        }
+
+        .map-overlay {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            margin-right: 20px;
+            font-family: Arial, sans-serif;
+            overflow: auto;
+            border-radius: 3px;
+        }
+
+        #menu {
+            position: absolute;
+            background: #fff;
+            padding: 10px;
+            font-family: 'Open Sans', sans-serif;
+        }
     </style>
     <title>Witeithie</title>
 </head>
 
 <body>
-    <button id="zoomGetButton">getZoom</button>
+    <!-- <button id="zoomGetButton">getZoom</button> -->
     <style>
 
     </style>
@@ -40,6 +82,25 @@
     </pre> -->
 
     <div id='map'></div>
+    <!-- <div class='map-overlay' id='features'> -->
+    <!-- <h2>US population density</h2>
+        <div id='pd'>
+            <p>Hover over a state!</p>
+        </div> -->
+    <!-- </div> -->
+    <div id="menu">
+        <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked" />
+        <label for="streets-v11">streets</label>
+        <input id="light-v10" type="radio" name="rtoggle" value="light" />
+        <label for="light-v10">light</label>
+        <input id="dark-v10" type="radio" name="rtoggle" value="dark" />
+        <label for="dark-v10">dark</label>
+        <input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors" />
+        <label for="outdoors-v11">outdoors</label>
+        <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" />
+        <label for="satellite-v9">satellite</label>
+    </div>
+    <div class='map-overlay' id='legend'></div>
 
 
 
@@ -74,6 +135,23 @@
         map.addControl(new mapboxgl.NavigationControl());
         map.on('load', function () {
 
+            var layers = ['Air Valve', 'Gate Valve', 'Reducer', 'Sluice'];
+            var colors = ['#5A0000', '#38DC1E', '#FF6100', '#000C5A'];
+            for (i = 0; i < layers.length; i++) {
+                var layer = layers[i];
+                var color = colors[i];
+                var item = document.createElement('div');
+                var key = document.createElement('span');
+                key.className = 'legend-key';
+                key.style.backgroundColor = color;
+
+                var value = document.createElement('span');
+                value.innerHTML = layer;
+                item.appendChild(key);
+                item.appendChild(value);
+                legend.appendChild(item);
+            }
+
             // map.addSource('appurtenances', {
             //     'type': 'geojson',
             //     'data': appurtenances
@@ -92,86 +170,6 @@
 
             //         "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(255, 255, 3, 1)', 'circle-opacity': 1.0 }
             //     })
-            map.addSource('appurtenances', {
-                'type': 'geojson',
-                'data': airValve
-            })
-            map.addLayer(//points layer
-                {
-                    "id": "airValve",
-                    "type": "circle",
-                    "source": "airValve",
-                    // 'minzoom': zoomThreshold,
-                    "layout": {
-                        'visibility': 'visible',
-                        // 'icon-image': 'gradient'
-
-                    },
-
-                    "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(255, 255, 3, 1)', 'circle-opacity': 1.0 }
-                })
-
-
-            map.addSource('appurtenances', {
-                'type': 'geojson',
-                'data': gateValve
-            })
-
-            map.addLayer(//points layer
-                {
-                    "id": "gateValve",
-                    "type": "circle",
-                    "source": "gateValve",
-                    // 'minzoom': zoomThreshold,
-                    "layout": {
-                        'visibility': 'visible',
-                        // 'icon-image': 'gradient'
-
-                    },
-
-                    "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(255, 255, 3, 1)', 'circle-opacity': 1.0 }
-                })
-
-
-            map.addSource('appurtenances', {
-                'type': 'geojson',
-                'data': reducer
-            })
-            map.addLayer(//points layer
-                {
-                    "id": "reducer",
-                    "type": "circle",
-                    "source": "reducer",
-                    // 'minzoom': zoomThreshold,
-                    "layout": {
-                        'visibility': 'visible',
-                        // 'icon-image': 'gradient'
-
-                    },
-
-                    "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(255, 255, 3, 1)', 'circle-opacity': 1.0 }
-                })
-
-
-            map.addSource('appurtenances', {
-                'type': 'geojson',
-                'data': sluice
-            })
-            map.addLayer(//points layer
-                {
-                    "id": "sluice",
-                    "type": "circle",
-                    "source": "sluice",
-                    // 'minzoom': zoomThreshold,
-                    "layout": {
-                        'visibility': 'visible',
-                        // 'icon-image': 'gradient'
-
-                    },
-
-                    "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(255, 255, 3, 1)', 'circle-opacity': 1.0 }
-                })
-
 
             map.addSource('Laterals', {
                 'type': 'geojson',
@@ -201,11 +199,96 @@
                 }
             )
 
+
+
+            map.addSource('airValve', {
+                'type': 'geojson',
+                'data': airValve
+            })
+            map.addLayer(//points layer
+                {
+                    "id": "airValve",
+                    "type": "circle",
+                    "source": "airValve",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        'visibility': 'visible',
+                        // 'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'circle-radius': ['/', 7.5590551182, 1.5], 'circle-color': 'rgba(90, 0, 0, 1)', 'circle-opacity': 1.0 }
+                })
+
+
+            map.addSource('gateValve', {
+                'type': 'geojson',
+                'data': gateValve
+            })
+
+            map.addLayer(//points layer
+                {
+                    "id": "gateValve",
+                    "type": "circle",
+                    "source": "gateValve",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        'visibility': 'visible',
+                        // 'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'circle-radius': ['/', 7.5590551182, 1.9], 'circle-color': 'rgba(56, 220, 30, 1)', 'circle-opacity': 1.0 }
+                })
+
+
+            map.addSource('reducer', {
+                'type': 'geojson',
+                'data': reducer
+            })
+            map.addLayer(//points layer
+                {
+                    "id": "reducer",
+                    "type": "circle",
+                    "source": "reducer",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        'visibility': 'visible',
+                        // 'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'circle-radius': ['/', 7.5590551182, 2], 'circle-color': 'rgba(255, 95, 0, 1)', 'circle-opacity': 1.0 }
+                })
+
+
+            map.addSource('sluice', {
+                'type': 'geojson',
+                'data': sluice
+            })
+            map.addLayer(//points layer
+                {
+                    "id": "sluice",
+                    "type": "circle",
+                    "source": "sluice",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        'visibility': 'visible',
+                        // 'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'circle-radius': ['/', 7.5590551182, 2], 'circle-color': 'rgba(0, 12, 90, 1)', 'circle-opacity': 1.0 }
+                })
+
+
+
+
             map.flyTo({
                 center: [37.064848, -1.0979],
                 zoom: 14,
-                bearing: -0,
-                pitch: 41.9,
+                bearing: 24,
+                pitch: 25,
                 speed: 0.5,
                 essential: true // this animation is considered essential with respect to prefers-reduced-motion
             });
