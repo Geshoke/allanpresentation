@@ -1,10 +1,33 @@
 var airValve ={
-"type": "FeatureCollection",
-"name": "Air_Valves",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "OBJECTID": 24, "subtype": "AV", "diameter": "2", "Status": "Active" }, "geometry": { "type": "Point", "coordinates": [ 37.057564713740057, -1.077431866251502 ] } },
-{ "type": "Feature", "properties": { "OBJECTID": 51, "subtype": "AV", "diameter": "6", "Status": "Active" }, "geometry": { "type": "Point", "coordinates": [ 37.072229865678686, -1.089482874862237 ] } },
-{ "type": "Feature", "properties": { "OBJECTID": 72, "subtype": "AV", "diameter": "2", "Status": "Active" }, "geometry": { "type": "Point", "coordinates": [ 37.064428623498692, -1.083296543167493 ] } }
-]
-}
+    "type": "FeatureCollection",
+    "name": "Air_Valves",
+    "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+    "features": [
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "5", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.923899371000061, -1.160219823999967 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "3", "lifecycles": null, "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.938580945000069, -1.153022031999967 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "4", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.97582733400003, -1.145857464999949 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "1", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.937723069000072, -1.158922224999969 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "3", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.923908675000064, -1.160225489999959 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "3", "lifecycles": null, "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.941823639000063, -1.150901157999954 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "1", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.949053646000038, -1.162558966999939 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "3", "lifecycles": null, "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.950501132000056, -1.149807583999973 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "4", "lifecycles": null, "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.924292130000026, -1.122611279999944 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "3", "lifecycles": null, "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.955624454000031, -1.148981424999931 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "3", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.923627173000057, -1.160241177999978 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "2", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.962212424000029, -1.115091078999967 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "1", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.928178080000066, -1.151853694999943 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "4", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.946083520000059, -1.098476544999926 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "3", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.940932788000055, -1.150727725999957 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "9", "lifecycles": "Abandoned", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 37.025911675000032, -1.09785558599998 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "2", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 37.004208406000032, -1.144787277999967 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "2", "lifecycles": "Active", "locatiodes": "Kibendera", "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 37.028912967000053, -1.183426923999946 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "4", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.937829178000072, -1.107893842999943 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "2", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.962755786000059, -1.105827846999944 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "2", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.95377583100003, -1.097899420999966 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "2", "lifecycles": "Active", "locatiodes": "Mugutha", "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.943297991000065, -1.102135503999932 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "2", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 37.05756471400008, -1.077431865999927 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "6", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 37.072229865000054, -1.089482873999941 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "2", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 37.064428623000026, -1.08329654299996 ] } },
+    { "type": "Feature", "properties": { "subtype": "AV", "diameter": "4", "lifecycles": "Active", "locatiodes": null, "intalldate": null }, "geometry": { "type": "Point", "coordinates": [ 36.960312564000048, -1.148012310999945 ] } }
+    ]
+    }

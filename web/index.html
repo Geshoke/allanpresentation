@@ -33,9 +33,9 @@
             padding: 10px;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             line-height: 18px;
-            height: 150px;
+            height: 200px;
             margin-bottom: 40px;
-            width: 100px;
+            width: 190px;
         }
 
         .legend-key {
@@ -47,6 +47,7 @@
         }
 
         .map-overlay {
+            width: 90;
             position: absolute;
             bottom: 0;
             right: 0;
@@ -64,7 +65,7 @@
             font-family: 'Open Sans', sans-serif;
         }
     </style>
-    <title>Witeithie</title>
+    <title>RUJWASCO GIS DATA</title>
 </head>
 
 <body>
@@ -113,6 +114,11 @@
     <script src="./Data/Gate_Valves.js"></script>
     <script src="./Data/Reducer.js"></script>
     <script src="./Data/Sluice_Valve.js"></script>
+    <script src="./Data/customers.js"></script>
+    <script src="./Data/boreholes.js"></script>
+    <script src="./Data/distb_meters.js"></script>
+    <script src="./Data/DMA.js"></script>
+    <script src="./Data/sub_DMA.js"></script>
 
     <!-- <script src="style.js"></script> -->
 
@@ -121,8 +127,6 @@
 
 
     <script>
-
-
         mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlYmlvIiwiYSI6ImNpc3p2Z3BxZzAwNXMyb28zaXVjajFmeXIifQ.24cleWGOQLJPLfGZqYOKMQ';
         var map = new mapboxgl.Map({
             container: 'map',
@@ -135,8 +139,8 @@
         map.addControl(new mapboxgl.NavigationControl());
         map.on('load', function () {
 
-            var layers = ['Air Valve', 'Gate Valve', 'Reducer', 'Sluice'];
-            var colors = ['#5A0000', '#38DC1E', '#FF6100', '#000C5A'];
+            var layers = ['Mains', 'Laterals', 'Customer Accounts','DMA','Sub-DMA','Boreholes', 'Distribution meters', 'Air Valve', 'Gate Valve', 'Reducer', 'Sluice'];
+            var colors = ['#1E4FDC','#c70000', 'rgba(252, 241, 25, 1)', 'rgba(156, 25, 252, 1)','rgba(220, 173, 255, 1)','#000000', '#ffffff', '#5A0000', '#38DC1E', '#FF6100', '#000C5A'];
             for (i = 0; i < layers.length; i++) {
                 var layer = layers[i];
                 var color = colors[i];
@@ -255,9 +259,7 @@
                     "layout": {
                         'visibility': 'visible',
                         // 'icon-image': 'gradient'
-
                     },
-
                     "paint": { 'circle-radius': ['/', 7.5590551182, 2], 'circle-color': 'rgba(255, 95, 0, 1)', 'circle-opacity': 1.0 }
                 })
 
@@ -282,18 +284,115 @@
                 })
 
 
+            map.addSource('customers', {
+                'type': 'geojson',
+                'data': customers
+            })
+            map.addLayer(//points layer
+                {
+                    "id": "customers",
+                    "type": "circle",
+                    "source": "customers",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        'visibility': 'visible',
+                        // 'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(252, 241, 25, 1)', 'circle-opacity': 0.7 }
+                })
+
+            map.addSource('boreholes', {
+                'type': 'geojson',
+                'data': boreholes
+            })
+            map.addLayer(//points layer
+                {
+                    "id": "boreholes",
+                    "type": "circle",
+                    "source": "boreholes",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        'visibility': 'visible',
+                        // 'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'circle-radius': ['/', 7.5590551182, 2], 'circle-color': 'rgba(0,0,0, 1)', 'circle-opacity': 1 }
+                })
+
+
+            map.addSource('distb_meters', {
+                'type': 'geojson',
+                'data': distb_meters
+            })
+            map.addLayer(//points layer
+                {
+                    "id": "distb_meters",
+                    "type": "circle",
+                    "source": "distb_meters",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        'visibility': 'visible',
+                        // 'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'circle-radius': ['/', 7.5590551182, 2], 'circle-color': 'rgba(255,255,255, 1)', 'circle-opacity': 1 }
+                })
+
+            map.addSource('sub_DMA', {
+                'type': 'geojson',
+                'data': sub_DMA
+            })
+            map.addLayer(//points layer
+                {
+                    "id": "sub_DMA",
+                    "type": "line",
+                    "source": "sub_DMA",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        'visibility': 'visible',
+                        // 'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'line-width': 0.904724409456, 'line-opacity': 1, 'line-color': 'rgba(220, 173, 255, 1)' }
+                })
+
+
+
+            map.addSource('DMA', {
+                'type': 'geojson',
+                'data': DMA
+            })
+            map.addLayer(//points layer
+                {
+                    "id": "DMA",
+                    "type": "line",
+                    "source": "DMA",
+                    // 'minzoom': zoomThreshold,
+                    "layout": {
+                        'visibility': 'visible',
+                        // 'icon-image': 'gradient'
+
+                    },
+
+                    "paint": { 'line-width': 2.904724409456, 'line-opacity': 1, 'line-color': 'rgba(156, 25, 252, 1)' }
+                })
 
 
             map.flyTo({
-                center: [37.064848, -1.0979],
-                zoom: 14,
-                bearing: 24,
-                pitch: 25,
+                center: [36.9907, -1.1559],
+                zoom: 12.,
+                bearing: 30,
+                pitch: 31,
                 speed: 0.5,
                 essential: true // this animation is considered essential with respect to prefers-reduced-motion
             });
         })
-
+        
 
         document.getElementById('zoomGetButton').addEventListener('click', function () {
             var zoom = map.getZoom()
@@ -311,7 +410,6 @@
 
 
     </script>
-
 </body>
 
 </html>
