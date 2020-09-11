@@ -50,9 +50,9 @@
             width: 90;
             position: absolute;
             bottom: 0;
-            right: 0;
+            left: 0;
             background: rgba(255, 255, 255, 0.8);
-            margin-right: 20px;
+            margin-left: 20px;
             font-family: Arial, sans-serif;
             overflow: auto;
             border-radius: 3px;
@@ -82,25 +82,61 @@
         <small>Feature Details</small>
     </pre> -->
 
-    <div id='map'></div>
+    <div id='map'>
+        <nav id="menu"></nav>
+        <div>
+            <img class="company-logo" src="./data/icons/rotary.png" alt="Receiving ....">
+        </div>
+
+        <div id="right" class="active sidebar flex-center right collapsed">
+            <!-- <h1 class="sidebar-content">More maps</h1> -->
+
+            <div class=" sidebar-content rounded-rect flex-center ">
+                <div>
+
+                    <button class="partners" id="mains">Mains</button>
+                    <button class="partners" id="Laterals">Laterals</button>
+                    <button class="partners" id="customers">Customer Accounts</button>
+                    <button class="partners" id="DMA">DMA</button>
+                    <button class="partners" id="sub_DMA">Sub-DMA</button>
+                    <button class="partners" id="boreholes">Borehole</button>
+                    <button class="partners" id="distb_meters">Distributed Meters</button>
+                    <button class="partners" id="airValve">Air Valves</button>
+                    <button class="partners" id="gateValve">Gate Valves</button>
+                    <button class="partners" id="reducer">Reducer</button>
+                    <button class="partners" id="sluice">Sluice</button>
+                    <!-- <button class="partners" id="D_HandwashingStns">Air Valves</button> -->
+
+
+
+                    <!-- <button class="partners" id="jonathan">Jonathan Jackson</button>
+                    <button class="partners" id="COPIA">Copia</button>
+                    <button class="partners" id="sanergy">Sanergy</button>
+                    <button class="partners" id="brck">Brck</button>
+                    <button class="partners" id="p_a">Practical Action</button>
+                    <button class="partners" id="shofco">Shofco</button> -->
+                    <script>
+
+                    </script>
+                </div>
+
+
+
+                <div class="sidbear-toggle rounded-rect right" onclick="toggleSidebar('right')">
+                    &larr;
+                </div>
+            </div>
+        </div>
+
+
+    </div>
     <!-- <div class='map-overlay' id='features'> -->
     <!-- <h2>US population density</h2>
         <div id='pd'>
             <p>Hover over a state!</p>
         </div> -->
     <!-- </div> -->
-    <div id="menu">
-        <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked" />
-        <label for="streets-v11">streets</label>
-        <input id="light-v10" type="radio" name="rtoggle" value="light" />
-        <label for="light-v10">light</label>
-        <input id="dark-v10" type="radio" name="rtoggle" value="dark" />
-        <label for="dark-v10">dark</label>
-        <input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors" />
-        <label for="outdoors-v11">outdoors</label>
-        <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" />
-        <label for="satellite-v9">satellite</label>
-    </div>
+
     <div class='map-overlay' id='legend'></div>
 
 
@@ -119,6 +155,10 @@
     <script src="./Data/distb_meters.js"></script>
     <script src="./Data/DMA.js"></script>
     <script src="./Data/sub_DMA.js"></script>
+
+    <script src="./funct_yangu/toggleHandler.js"></script>
+
+    <script src="./funct_yangu/PressHandler.js"></script>
 
     <!-- <script src="style.js"></script> -->
 
@@ -139,8 +179,8 @@
         map.addControl(new mapboxgl.NavigationControl());
         map.on('load', function () {
 
-            var layers = ['Mains', 'Laterals', 'Customer Accounts','DMA','Sub-DMA','Boreholes', 'Distribution meters', 'Air Valve', 'Gate Valve', 'Reducer', 'Sluice'];
-            var colors = ['#1E4FDC','#c70000', 'rgba(252, 241, 25, 1)', 'rgba(156, 25, 252, 1)','rgba(220, 173, 255, 1)','#000000', '#ffffff', '#5A0000', '#38DC1E', '#FF6100', '#000C5A'];
+            var layers = ['Mains', 'Laterals', 'Customer Accounts', 'DMA', 'Sub-DMA', 'Boreholes', 'Distribution meters', 'Air Valve', 'Gate Valve', 'Reducer', 'Sluice'];
+            var colors = ['#1E4FDC', '#c70000', 'rgba(252, 241, 25, 1)', 'rgba(156, 25, 252, 1)', 'rgba(220, 173, 255, 1)', '#000000', '#ffffff', '#5A0000', '#38DC1E', '#FF6100', '#000C5A'];
             for (i = 0; i < layers.length; i++) {
                 var layer = layers[i];
                 var color = colors[i];
@@ -181,12 +221,15 @@
             })
             map.addLayer(
                 {
-                    "id": "laterals_layer",
+                    "id": "Laterals",
                     "type": "line",
                     "source": "Laterals",
-                    "layout": {},
+                    "layout": {
+                        'visibility': 'visible',
+                    },
                     "paint": { 'line-width': 1.904724409456, 'line-opacity': 1, 'line-color': '#c70000' }
                 })
+
 
             map.addSource('mains', {
                 'type': 'geojson',
@@ -197,8 +240,9 @@
                     "id": "mains",
                     "type": "line",
                     "source": "mains",
-
-                    "layout": {},
+                    "layout": {
+                        'visibility': 'visible',
+                    },
                     "paint": { 'line-width': 2.904724409456, 'line-opacity': 1, 'line-color': '#1E4FDC' }
                 }
             )
@@ -303,6 +347,7 @@
                     "paint": { 'circle-radius': ['/', 7.5590551182, 3], 'circle-color': 'rgba(252, 241, 25, 1)', 'circle-opacity': 0.7 }
                 })
 
+
             map.addSource('boreholes', {
                 'type': 'geojson',
                 'data': boreholes
@@ -392,7 +437,9 @@
                 essential: true // this animation is considered essential with respect to prefers-reduced-motion
             });
         })
+
         
+
 
         document.getElementById('zoomGetButton').addEventListener('click', function () {
             var zoom = map.getZoom()
